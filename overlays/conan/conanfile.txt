@@ -1,0 +1,7 @@
+[requires]
+fmt/10.2.0
+
+[generators]
+cmake_find_package
+cmake_paths
+

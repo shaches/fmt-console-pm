@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "fmt-console-pm-overlay",
+  "name": "fmt Console App (overlay PM)",
+  "version": "1.0.0",
+  "description": "Console app using fmt, with package manager-specific overlays.",
+  "variables": {
+    "project_name": {
+      "type": "string",
+      "prompt": "Project name?",
+      "default": "fmt_console_app",
+      "validation_regex": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "error_message": "Project name must be a valid C++ identifier (no spaces, no leading digit)."
+    },
+    "project_description": {
+      "type": "string",
+      "prompt": "Short project description?",
+      "default": "A C++ console app using fmt with a chosen package manager."
+    },
+    "cpp_standard": {
+      "type": "select",
+      "prompt": "C++ standard?",
+      "options": ["17", "20", "23"],
+      "default": "20"
+    },
+    "package_manager": {
+      "type": "select",
+      "prompt": "Which package manager to use for fmt?",
+      "options": ["none", "system", "vcpkg", "conan"],
+      "default": "system"
+    }
+  },
+  "hooks": {
+    "post_gen": [
+      "git init",
+      "git add ."
+    ]
+  },
+  "overlays": [
+    {
+      "variable": "package_manager",
+      "equals": "none",
+      "path": "overlays/none"
+    },
+    {
+      "variable": "package_manager",
+      "equals": "vcpkg",
+      "path": "overlays/vcpkg"
+    },
+    {
+      "variable": "package_manager",
+      "equals": "conan",
+      "path": "overlays/conan"
+    }
+  ]
+}
+
