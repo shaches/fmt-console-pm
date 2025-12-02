@@ -21,4 +21,4 @@ To generate a new project from this template using `cpp-hub`:
 cpp-hub new fmt-console-pm
 
 # Or directly from Git:
-cpp-hub new --git [https://github.com/shaches/fmt-console-pm.git](https://github.com/shaches/fmt-console-pm.git)
+cpp-hub new --git https://github.com/shaches/fmt-console-pm.git
